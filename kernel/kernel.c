@@ -3,13 +3,10 @@ void main()
 {
     cls();
     println("hello world");
-    for (int i = 0; i < MAX_ROWS; i++)
+    for (int i = 0; i <= 6000; i++)
     {
-        println("THIS IS SCROLLING");
+        println(int_to_assci(i));
     }
-    for (int i = 0; i < 13; i++)
-    {
-        println("THIS IS PRINTED AFTER MAX ROWS");
-    }
+
     print("END HERE");
 }

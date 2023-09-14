@@ -43,6 +43,7 @@ You will need qemu too to test compiled os.
 Run `make compile` and then `make start`
 
 Result (Scrolling in action) -
-<img width="832" alt="image" src="https://github.com/thisisommore/os-from-scratch/assets/51229945/b63a9cf7-a5b7-4537-8cbe-bb145c9e7c94">
 
-Thanks to - (cfenollosa/os-tutorial)[https://github.com/cfenollosa/os-tutorial], (OSDevWiki)[https://wiki.osdev.org/Main_Page]
+![Screen Recording 2023-09-14 at 8 57 21 PM](https://github.com/thisisommore/os-from-scratch/assets/51229945/1adfcbce-8e4f-4877-8bd2-a4d36e6a5d73)
+
+Thanks to - [cfenollosa/os-tutorial](https://github.com/cfenollosa/os-tutorial), [OSDevWiki](https://wiki.osdev.org/Main_Page)
