@@ -1,7 +1,6 @@
 #include "drivers/screen.c"
 void main()
 {
-    char *video_mem = (char *)0xb8000;
     cls();
     println("hello world");
     for (int i = 0; i < MAX_ROWS; i++)
