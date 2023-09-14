@@ -41,3 +41,6 @@ And copy the build zip generated inside container `/root/build-i686-elf/i686-elf
 You will need qemu too to test compiled os.
 
 Run `make compile` and then `make start`
+
+Result (Scrolling in action) -
+<img width="832" alt="image" src="https://github.com/thisisommore/os-from-scratch/assets/51229945/b63a9cf7-a5b7-4537-8cbe-bb145c9e7c94">
