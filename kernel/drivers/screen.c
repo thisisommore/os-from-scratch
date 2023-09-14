@@ -4,19 +4,19 @@
 
 void set_cursor_offset(int offset)
 {
-    port_byte_out(0x3d4, 14);
-    port_byte_out(0x3d5, offset >> 8);
-    port_byte_out(0x3d4, 15);
-    port_byte_out(0x3d5, offset & 0xff);
+    port_byte_out(VIDEO_PORT_CTRL, 14);
+    port_byte_out(VIDEO_PORT_DATA, offset >> 8);
+    port_byte_out(VIDEO_PORT_CTRL, 15);
+    port_byte_out(VIDEO_PORT_DATA, offset & 0xff);
 }
 
 void print(char *text)
 {
     char *video_mem = VIDEO_MEMORY;
-    port_byte_out(0x3d4, 14);
-    int pos = port_byte_in(0x3d5) << 8;
-    port_byte_out(0x3d4, 15);
-    pos += port_byte_in(0x3d5);
+    port_byte_out(VIDEO_PORT_CTRL, 14);
+    int pos = port_byte_in(VIDEO_PORT_DATA) << 8;
+    port_byte_out(VIDEO_PORT_CTRL, 15);
+    pos += port_byte_in(VIDEO_PORT_DATA);
     while (*text != 0)
     {
         if (*text == '\n')
@@ -26,7 +26,7 @@ void print(char *text)
             continue;
         }
         video_mem[pos * 2] = *text++;
-        video_mem[(pos * 2) + 1] = 0x0f;
+        video_mem[(pos * 2) + 1] = WHITE_ON_BLACK;
         pos++;
         if (get_row(pos) > (MAX_ROWS))
         {
@@ -49,10 +49,10 @@ void println(char *text)
 int cursor_to_new_line()
 {
     char *video_mem = VIDEO_MEMORY;
-    port_byte_out(0x3d4, 14);
-    int pos = port_byte_in(0x3d5) << 8;
-    port_byte_out(0x3d4, 15);
-    pos += port_byte_in(0x3d5);
+    port_byte_out(VIDEO_PORT_CTRL, 14);
+    int pos = port_byte_in(VIDEO_PORT_DATA) << 8;
+    port_byte_out(VIDEO_PORT_CTRL, 15);
+    pos += port_byte_in(VIDEO_PORT_DATA);
     int current_row = get_row(pos + 1);
     if (current_row + 1 > MAX_ROWS)
     {
@@ -99,11 +99,11 @@ int get_cursor_offset(int row, int col)
 }
 void cls()
 {
-    char *video_mem = (char *)0xb8000;
+    char *video_mem = (char *)VIDEO_MEMORY;
     for (int i = 0; i < MAX_COLS * MAX_ROWS; i++)
     {
         video_mem[i * 2] = ' ';
-        video_mem[i * 2 + 1] = 0x0f;
+        video_mem[i * 2 + 1] = WHITE_ON_BLACK;
     }
     set_cursor_offset(0);
 }
