@@ -17,7 +17,7 @@ call switch_pm
 %include "./boot/switch_pm/gdt.asm"
 
 ;32 bit
-%include "./boot/b32/32_print.asm"
+%include "./boot/b32/print.asm"
 %include "./boot/switch_pm/pm_switch.asm"
 
 [bits 32]
