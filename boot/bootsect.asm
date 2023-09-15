@@ -8,7 +8,7 @@ call print_ln
 call print
 
 mov bx,KERNAL_OFFSET
-mov dh,4
+mov dh,9
 call disk_load 
 call switch_pm
 

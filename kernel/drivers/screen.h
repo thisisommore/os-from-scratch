@@ -8,4 +8,6 @@
 #define VIDEO_PORT_CTRL 0x3d4
 #define VIDEO_PORT_DATA 0x3d5
 
+void print(char *text);
+void println(char *text);
 #endif SCREEN_H

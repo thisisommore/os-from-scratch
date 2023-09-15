@@ -20,7 +20,9 @@ TODO list
   - [x] Clear screen function
   - [x] Print functions with scroll
         and newline
-  - [ ] Interrupt handling
+  - [x] Interrupt handling
+  - [ ] Keyboard Support
+  - [ ] File system
 - Core OS
   - [ ] Cursor support
   - [ ] External application support
@@ -44,6 +46,6 @@ Run `make compile` and then `make start`
 
 Result (Scrolling in action) -
 
-![Screen Recording 2023-09-14 at 8 57 21 PM](https://github.com/thisisommore/os-from-scratch/assets/51229945/1adfcbce-8e4f-4877-8bd2-a4d36e6a5d73)
+![Screen Recording 2023-09-15 at 10 00 43 PM](https://github.com/thisisommore/os-from-scratch/assets/51229945/721e8fdf-b4bf-4f6a-9d61-f778fac4763d)
 
 Thanks to - [cfenollosa/os-tutorial](https://github.com/cfenollosa/os-tutorial), [OSDevWiki](https://wiki.osdev.org/Main_Page)
