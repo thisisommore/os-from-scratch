@@ -6,7 +6,7 @@ void main()
     idt_init();
     cls();
     println("hello world");
-    for (int i = 0; i <= 3; i++)
+    for (int i = 0; i <= 6000; i++)
     {
         println(int_to_assci(i));
     }
