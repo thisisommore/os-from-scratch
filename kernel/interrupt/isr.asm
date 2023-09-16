@@ -31,6 +31,23 @@ global isr29
 global isr30
 global isr31
 
+global irq0
+global irq1
+global irq2
+global irq3
+global irq4
+global irq5
+global irq6
+global irq7
+global irq8
+global irq9
+global irq10
+global irq11
+global irq12
+global irq13
+global irq14
+global irq15
+
 [extern isr_handler]
 
 isr_handle:
@@ -270,4 +287,110 @@ isr31:
     cli
     push byte 0
     push byte 31
+    jmp isr_handle
+
+
+irq0:
+    cli
+    push byte 0
+    push byte 0
+    jmp isr_handle
+
+; 1: Debug Exception
+irq1:
+    cli
+    push byte 0
+    push byte 1
+    jmp isr_handle
+
+; 2: Non Maskable Interrupt Exception
+irq2:
+    cli
+    push byte 0
+    push byte 2
+    jmp isr_handle
+
+; 3: Int 3 Exception
+irq3:
+    cli
+    push byte 0
+    push byte 3
+    jmp isr_handle
+
+; 4: INTO Exception
+irq4:
+    cli
+    push byte 0
+    push byte 4
+    jmp isr_handle
+
+; 5: Out of Bounds Exception
+irq5:
+    cli
+    push byte 0
+    push byte 5
+    jmp isr_handle
+
+; 6: Invalid Opcode Exception
+irq6:
+    cli
+    push byte 0
+    push byte 6
+    jmp isr_handle
+
+; 7: Coprocessor Not Available Exception
+irq7:
+    cli
+    push byte 0
+    push byte 7
+    jmp isr_handle
+
+; 8: Double Fault Exception (With Error Code!)
+irq8:
+    cli
+    push byte 8
+    jmp isr_handle
+
+; 9: Coprocessor Segment Overrun Exception
+irq9:
+    cli
+    push byte 0
+    push byte 9
+    jmp isr_handle
+
+; 10: Bad TSS Exception (With Error Code!)
+irq10:
+    cli
+    push byte 10
+    jmp isr_handle
+
+; 11: Segment Not Present Exception (With Error Code!)
+irq11:
+    cli
+    push byte 11
+    jmp isr_handle
+
+; 12: Stack Fault Exception (With Error Code!)
+irq12:
+    cli
+    push byte 12
+    jmp isr_handle
+
+; 13: General Protection Fault Exception (With Error Code!)
+irq13:
+    cli
+    push byte 13
+    jmp isr_handle
+
+; 14: Page Fault Exception (With Error Code!)
+irq14:
+    cli
+    push byte 14
+    jmp isr_handle
+
+; 15: Reserved Exception
+irq15:
+    cli
+    push byte 0
+    push byte 15
     jmp isr_handle
