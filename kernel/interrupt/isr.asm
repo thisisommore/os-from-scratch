@@ -49,6 +49,7 @@ global irq14
 global irq15
 
 [extern isr_handler]
+[extern irq_handler]
 
 isr_handle:
     pusha
@@ -61,6 +62,27 @@ isr_handle:
     mov gs,ax
 
     call isr_handler
+    pop eax
+    mov ds,ax
+    mov es,ax
+    mov fs,ax
+    mov gs,ax
+    popa
+    add sp, 8
+    sti
+    iret
+
+irq_handle:
+    pusha
+    mov ax,ds
+    push eax
+    mov ax,0x10
+    mov ds,ax
+    mov es,ax
+    mov fs,ax
+    mov gs,ax
+
+    call irq_handler
     pop eax
     mov ds,ax
     mov es,ax
@@ -290,107 +312,99 @@ isr31:
     jmp isr_handle
 
 
+; TODO: only push int_no
 irq0:
     cli
     push byte 0
-    push byte 0
-    jmp isr_handle
+    push byte 32
+    jmp irq_handle
 
-; 1: Debug Exception
 irq1:
     cli
     push byte 0
-    push byte 1
-    jmp isr_handle
+    push byte 33
+    jmp irq_handle
 
-; 2: Non Maskable Interrupt Exception
 irq2:
     cli
     push byte 0
-    push byte 2
-    jmp isr_handle
+    push byte 34
+    jmp irq_handle
 
-; 3: Int 3 Exception
 irq3:
     cli
     push byte 0
-    push byte 3
-    jmp isr_handle
+    push byte 35
+    jmp irq_handle
 
-; 4: INTO Exception
 irq4:
     cli
     push byte 0
-    push byte 4
-    jmp isr_handle
+    push byte 36
+    jmp irq_handle
 
-; 5: Out of Bounds Exception
 irq5:
     cli
     push byte 0
-    push byte 5
-    jmp isr_handle
+    push byte 37
+    jmp irq_handle
 
-; 6: Invalid Opcode Exception
 irq6:
     cli
     push byte 0
-    push byte 6
-    jmp isr_handle
+    push byte 38
+    jmp irq_handle
 
-; 7: Coprocessor Not Available Exception
 irq7:
     cli
     push byte 0
-    push byte 7
-    jmp isr_handle
+    push byte 39
+    jmp irq_handle
 
-; 8: Double Fault Exception (With Error Code!)
 irq8:
     cli
-    push byte 8
-    jmp isr_handle
+    push byte 0
+    push byte 40
+    jmp irq_handle
 
-; 9: Coprocessor Segment Overrun Exception
 irq9:
     cli
     push byte 0
-    push byte 9
-    jmp isr_handle
+    push byte 41
+    jmp irq_handle
 
-; 10: Bad TSS Exception (With Error Code!)
 irq10:
     cli
-    push byte 10
-    jmp isr_handle
+    push byte 0
+    push byte 42
+    jmp irq_handle
 
-; 11: Segment Not Present Exception (With Error Code!)
 irq11:
     cli
-    push byte 11
-    jmp isr_handle
+    push byte 0
+    push byte 43
+    jmp irq_handle
 
-; 12: Stack Fault Exception (With Error Code!)
 irq12:
     cli
-    push byte 12
-    jmp isr_handle
+    push byte 0
+    push byte 44
+    jmp irq_handle
 
-; 13: General Protection Fault Exception (With Error Code!)
 irq13:
     cli
-    push byte 13
-    jmp isr_handle
+    push byte 0
+    push byte 45
+    jmp irq_handle
 
-; 14: Page Fault Exception (With Error Code!)
 irq14:
     cli
-    push byte 14
-    jmp isr_handle
+    push byte 0
+    push byte 46
+    jmp irq_handle
 
-; 15: Reserved Exception
 irq15:
     cli
     push byte 0
-    push byte 15
-    jmp isr_handle
+    push byte 47
+    jmp irq_handle

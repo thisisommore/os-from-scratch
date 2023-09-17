@@ -2,6 +2,10 @@
 #define ISR_H
 #define KERNEL_SEG 0x08
 #include "../types.h"
+#include "idt.h"
+
+typedef (*irq_individual_handle)(idt_registers);
+irq_individual_handle irq_h[256];
 
 extern void isr0();
 extern void isr1();
