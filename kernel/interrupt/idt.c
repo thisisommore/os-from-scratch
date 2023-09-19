@@ -81,7 +81,7 @@ void set_idt_entry(int n, u32 handler)
     igt[n].always0 = 0;
     igt[n].flags = 0x8E;
     igt[n]
-        .high_offset = (handler >> 16) & 0xffff;
+        .high_offset = (handler >> 16);
 }
 
 void idtd_int()

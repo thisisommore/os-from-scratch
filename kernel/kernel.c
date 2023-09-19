@@ -1,6 +1,7 @@
 #include "drivers/screen.c"
 #include "drivers/keyboard.c"
 #include "interrupt/isr.c"
+#include "interrupt/timer.c"
 #include "interrupt/idt.c"
 void main()
 {
@@ -8,13 +9,12 @@ void main()
     idt_init();
     cls();
     println("hello world");
-    for (int i = 0; i <= 6000; i++)
+    for (int i = 0; i <= 3000; i++)
     {
         println(int_to_assci(i));
     }
 
     init_keyboard();
+    init_timer();
     println("END HERE");
-    // __asm__ __volatile__("int $2");
-    // __asm__ __volatile__("int $3");
 }

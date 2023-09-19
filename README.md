@@ -15,6 +15,7 @@ TODO list
   - [x] 16 bit print and hex print
   - [x] gdt for 32 bit protected mode
   - [x] 32 bit print
+  - [ ] Splash screen
 - Kernel
   - [x] Basic screen driver
   - [x] Clear screen function
@@ -46,11 +47,16 @@ Run `make compile` and then `make start`
 
 ## Result
 
-Scrolling -
-
-![Screen Recording 2023-09-15 at 10 00 43 PM](https://github.com/thisisommore/os-from-scratch/assets/51229945/721e8fdf-b4bf-4f6a-9d61-f778fac4763d)
+Scrolling and Timer -
+![Screen Recording 2023-09-19 at 2 35 03 PM](https://github.com/thisisommore/os-from-scratch/assets/51229945/b5695f8e-9c30-4c93-b14a-8950ce09efd5)
 
 Keyboard interrupt -
 <img width="832" alt="Screenshot 2023-09-17 at 7 40 04 PM" src="https://github.com/thisisommore/os-from-scratch/assets/51229945/a22f8cef-6cc2-4189-90b6-c6b8fb6e3df6">
 
-Thanks to - [cfenollosa/os-tutorial](https://github.com/cfenollosa/os-tutorial), [OSDevWiki](https://wiki.osdev.org/Main_Page)
+## Thanks
+
+[cfenollosa/os-tutorial](https://github.com/cfenollosa/os-tutorial)
+
+[OSDevWiki](https://wiki.osdev.org/Main_Page)
+
+[bkerndev(OSDever) PIT](http://www.osdever.net/bkerndev/Docs/pit.htm)
