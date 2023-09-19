@@ -1,8 +1,9 @@
 #include "drivers/screen.c"
 #include "drivers/keyboard.c"
-#include "interrupt/isr.c"
-#include "interrupt/timer.c"
 #include "interrupt/idt.c"
+#include "interrupt/isr.c"
+#include "interrupt/irq.c"
+#include "interrupt/timer.c"
 void main()
 {
     __asm__("sti");

@@ -1,11 +1,11 @@
 #include "../drivers/screen.h"
 #include "../utils.h"
 #include "../drivers/ports.h"
-#include "isr.h"
+#include "irq.h"
 
 #define PIT_FREQ 19
 int tick = 0;
-void timer_handler(idt_registers t)
+void timer_handler(irq_handler_register r)
 {
     if (tick % PIT_FREQ == 0)
     {

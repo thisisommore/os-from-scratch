@@ -1,4 +1,4 @@
-#include "../interrupt/isr.h"
+#include "../interrupt/irq.h"
 #include "../interrupt/idt.h"
 #include "ports.h"
 #include "screen.h"
@@ -6,7 +6,7 @@
 #include "keyboard.h"
 
 #define KEYBOARD_DATA 0x60
-void keyboard_handler(idt_registers r)
+void keyboard_handler(irq_handler_register r)
 {
     u8 scancode = port_byte_in(KEYBOARD_DATA);
     print("Keyboard inpput scan code - ");
