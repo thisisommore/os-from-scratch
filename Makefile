@@ -13,14 +13,14 @@ kernel: kernel/kernel.c
 kernel_entry: 
 	nasm kernel/entry.asm -f elf -o ${OUT}/entry.o
 
-ld_kernel_entry: ${OUT}/isr.o ${OUT}/entry.o ${OUT}/kernel.o
-	${LD} -o ${OUT}/kernel.bin -Ttext 0x2000 ${OUT}/entry.o ${OUT}/kernel.o ${OUT}/isr.o --oformat binary
+ld_kernel_entry: ${OUT}/interrupt.o ${OUT}/entry.o ${OUT}/kernel.o
+	${LD} -o ${OUT}/kernel.bin -Ttext 0x2000 ${OUT}/entry.o ${OUT}/kernel.o ${OUT}/interrupt.o --oformat binary
 
 ld_kernel_entry_elf: ${OUT}/entry.o ${OUT}/kernel.o
 	${LD} -o ${OUT}/kernel.elf -Ttext 0x2000 ${OUT}/entry.o ${OUT}/kernel.o
 
-${OUT}/isr.o: 
-	nasm kernel/interrupt/isr.asm -f elf -o $@
+${OUT}/interrupt.o: 
+	nasm kernel/interrupt/interrupt.asm -f elf -o $@
 
 boot_sec: ${OUT}/kernel.bin
 	nasm boot/bootsect.asm -f bin -o ${OUT}/bootsect.bin 
