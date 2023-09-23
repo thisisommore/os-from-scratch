@@ -35,3 +35,25 @@ char *int_to_assci(int num)
     char *b = &buffer;
     return b;
 }
+
+int strcmp(char *a, char *b)
+{
+    char *head_a = a;
+    char *head_b = b;
+
+    while (1)
+    {
+        if (*(head_a) == 0 && *(head_b) == 0)
+        {
+            return 1;
+        }
+
+        if (*(head_a) != *(head_b))
+        {
+            return 0;
+        }
+
+        head_a++;
+        head_b++;
+    }
+}

@@ -6,92 +6,139 @@
 #include "keyboard.h"
 
 #define KEYBOARD_DATA 0x60
+
+char keyboard_buffer[100];
+char *ky_p = keyboard_buffer;
+
+char *prev_token_p = keyboard_buffer;
+
+void clear_k_buffer()
+{
+    while (keyboard_buffer != ky_p)
+    {
+        *ky_p = 0;
+        ky_p--;
+    }
+}
+
+void read_line(char *return_buffer)
+{
+
+    while (*(ky_p - 1) != '\n')
+    {
+        char *b_ky_p = ky_p;
+        if (b_ky_p - 1 != prev_token_p)
+        {
+            prev_token_p = b_ky_p - 1;
+            if (*(b_ky_p - 1) == '\n')
+                continue;
+            print(b_ky_p - 1);
+        }
+    }
+
+    char *head = keyboard_buffer;
+    char *return_buffer_head = return_buffer;
+    while (*head != '\n')
+    {
+        *(return_buffer_head++) = *(head++);
+    }
+    *(return_buffer_head++) = 0;
+    clear_k_buffer();
+}
+
 void keyboard_handler(irq_handler_register r)
 {
     u8 scancode = port_byte_in(KEYBOARD_DATA);
-    print("Keyboard inpput scan code - ");
-    println(int_to_assci(scancode));
+    // print("Keyboard inpput scan code - ");
+    // println(int_to_assci(scancode));
 
     switch (scancode & 0xFF)
     {
     case SC_Q:
-        println("Q");
+        *(ky_p++) = 'Q';
         break;
     case SC_W:
-        println("W");
+        *(ky_p++) = 'W';
         break;
     case SC_E:
-        println("E");
+        *(ky_p++) = 'E';
         break;
-
     case SC_R:
-        println("R");
+        *(ky_p++) = 'R';
         break;
     case SC_T:
-        println("T");
+        *(ky_p++) = 'T';
         break;
     case SC_Y:
-        println("Y");
+        *(ky_p++) = 'Y';
         break;
     case SC_U:
-        println("U");
+        *(ky_p++) = 'U';
         break;
     case SC_I:
-        println("I");
+        *(ky_p++) = 'I';
         break;
     case SC_O:
-        println("O");
+        *(ky_p++) = 'O';
         break;
     case SC_P:
-        println("P");
+        *(ky_p++) = 'P';
         break;
     case SC_A:
-        println("A");
+        *(ky_p++) = 'A';
         break;
     case SC_S:
-        println("S");
+        *(ky_p++) = 'S';
         break;
     case SC_D:
-        println("D");
+        *(ky_p++) = 'D';
         break;
     case SC_F:
-        println("F");
+        *(ky_p++) = 'F';
         break;
     case SC_G:
-        println("G");
+        *(ky_p++) = 'G';
         break;
     case SC_H:
-        println("H");
+        *(ky_p++) = 'H';
         break;
     case SC_J:
-        println("J");
+        *(ky_p++) = 'J';
         break;
     case SC_K:
-        println("K");
+        *(ky_p++) = 'K';
         break;
     case SC_L:
-        println("L");
+        *(ky_p++) = 'L';
         break;
     case SC_Z:
-        println("Z");
+        *(ky_p++) = 'Z';
         break;
     case SC_X:
-        println("X");
+        *(ky_p++) = 'X';
         break;
     case SC_C:
-        println("C");
+        *(ky_p++) = 'C';
         break;
     case SC_V:
-        println("V");
+        *(ky_p++) = 'V';
         break;
     case SC_B:
-        println("B");
+        *(ky_p++) = 'B';
         break;
     case SC_N:
-        println("N");
+        *(ky_p++) = 'N';
         break;
     case SC_M:
-        println("M");
+        *(ky_p++) = 'M';
+        break;
+
+    case SC_ENTER:
+        *(ky_p++) = '\n';
+        break;
+
+    case SC_SPACE:
+        *(ky_p++) = ' ';
         break;
 
     default:

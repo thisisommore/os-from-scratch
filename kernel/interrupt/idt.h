@@ -3,8 +3,6 @@
 #include "../types.h"
 #define IGT_ENTRIES 256
 void set_idt_entry(int n, u32 handler);
-interrupt_gate igt[IGT_ENTRIES];
-
 typedef struct
 {
     u16 low_offset;
@@ -13,6 +11,7 @@ typedef struct
     u8 flags;
     u16 high_offset;
 } __attribute__((packed)) interrupt_gate;
+interrupt_gate igt[IGT_ENTRIES];
 typedef struct
 {
     u16 limit;

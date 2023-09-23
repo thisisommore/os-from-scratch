@@ -24,3 +24,6 @@
 #define SC_B 48
 #define SC_N 49
 #define SC_M 50
+
+#define SC_ENTER 28
+#define SC_SPACE 57
