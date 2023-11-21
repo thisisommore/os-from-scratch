@@ -1,16 +1,15 @@
 void get_params(char *command, char *bin_result, char *arguments_res)
 {
-    char *command_head = command;
-    while (*command_head != ' ')
+    while (*command != ' ')
     {
-        *(bin_result++) = *(command_head++);
+        *(bin_result++) = *(command++);
     }
-    command_head++;
+    command++;
     *(bin_result++) = 0;
 
-    while (*command_head != 0)
+    while (*command != 0)
     {
-        *(arguments_res++) = *(command_head++);
+        *(arguments_res++) = *(command++);
     }
     *(arguments_res++) = 0;
 }

@@ -11,7 +11,8 @@ void main()
     idt_init();
     cls();
     init_keyboard();
-
+    println("");
+    println("");
     println("PRO SHELL");
     char command_line[100];
     char bin_name[100], arg_res[100];
