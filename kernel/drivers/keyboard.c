@@ -40,12 +40,11 @@ void read_line(char *return_buffer)
     }
 
     char *head = keyboard_buffer;
-    char *return_buffer_head = return_buffer;
     while (*head != '\n')
     {
-        *(return_buffer_head++) = *(head++);
+        *(return_buffer++) = *(head++);
     }
-    *(return_buffer_head++) = 0;
+    *(return_buffer++) = 0;
     clear_k_buffer();
 }
 
