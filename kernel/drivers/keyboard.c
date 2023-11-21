@@ -10,8 +10,6 @@
 char keyboard_buffer[100];
 char *ky_p = keyboard_buffer;
 
-char *prev_token_p = keyboard_buffer;
-
 void clear_k_buffer()
 {
     while (keyboard_buffer != ky_p)
@@ -23,13 +21,18 @@ void clear_k_buffer()
 
 void read_line(char *return_buffer)
 {
-
+    char *last_processed_token = keyboard_buffer;
+    // ky_p-1 because it always points to next space in buffer available to place data (key)
     while (*(ky_p - 1) != '\n')
     {
+
+        // ky_p changes quickly since that happens with interrupts, so better backup the pointer
         char *b_ky_p = ky_p;
-        if (b_ky_p - 1 != prev_token_p)
+
+        // this loop runs till ky_p has \n, so avoid processing duplicate charactors by storing last_processed_token
+        if (b_ky_p - 1 != last_processed_token)
         {
-            prev_token_p = b_ky_p - 1;
+            last_processed_token = b_ky_p - 1;
             if (*(b_ky_p - 1) == '\n')
                 continue;
             print(b_ky_p - 1);
