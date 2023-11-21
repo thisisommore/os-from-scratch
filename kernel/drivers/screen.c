@@ -77,6 +77,8 @@ int scroll(int pos)
 
 int get_col(int offset)
 {
+    if (offset == 0)
+        return 0;
     int row = offset / MAX_COLS;
     int remin = offset - (MAX_COLS * row);
     if (remin == 0)
@@ -86,15 +88,21 @@ int get_col(int offset)
 
 int get_row(int offset)
 {
-    int col = offset / MAX_COLS;
-    if (col * MAX_COLS < offset)
-        return col + 1;
-    return col;
+    if (offset == 0)
+        return 0;
+    int row = offset / MAX_COLS;
+
+    if (row * MAX_COLS < offset)
+        return row + 1;
+    return row;
 }
 
 int get_cursor_offset(int row, int col)
 {
+    // fill rows before the specified row
     int col_max_row = ((row - 1) * MAX_COLS);
+
+    // fill last row only till current col
     return col_max_row + col;
 }
 void cls()
